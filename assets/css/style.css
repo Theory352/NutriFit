@@ -1312,11 +1312,11 @@ img {
   top: 4px;
 }
 .banner-area {
-  background-image: url(../images/custom/custom4.jpg);
+  background-image: url(../images/custom/customHero.jpg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  padding: 85px 0;
+  padding: 75px 0;
   position: relative;
   z-index: 1;
 }

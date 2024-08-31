@@ -457,14 +457,14 @@
             <div class="user-all-form">
               <div class="contact-form">
                 <h3>Create an Account!</h3>
-                <form id="contactForm">
+                <form id="contactForm" method="post">
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
                         <input
                           type="text"
                           name="name"
-                          id="name"
+                          id="username"
                           class="form-control"
                           required
                           data-error="Please enter your Username"
@@ -477,7 +477,7 @@
                         <input
                           type="email"
                           name="name"
-                          id="name"
+                          id="email"
                           class="form-control"
                           required
                           data-error="Please enter your Email"
@@ -491,12 +491,13 @@
                           class="form-control"
                           type="password"
                           name="password"
+                          id="password"
                           placeholder="Password"
                         />
                       </div>
                     </div>
                     <div class="col-lg-12 col-md-12 text-center">
-                      <button type="submit" class="default-btn">
+                      <button type="submit" id="register" class="default-btn">
                         Register Now
                       </button>
                     </div>
@@ -523,14 +524,14 @@
               <div class="footer-widget">
                 <div class="footer-logo">
                   <a href="index.html">
-                    <img src="assets/images/footer-logo.png" alt="Images" />
+                    <img
+                      src="assets/images/main.jpg"
+                      style="width: 13rem; height: 13rem; border-radius: 50%"
+                      alt="Images"
+                    />
                   </a>
                 </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                  quis ipsum suspendisse.
-                </p>
+
                 <ul class="social-link">
                   <li>
                     <a href="https://www.facebook.com/" target="_blank">
@@ -566,17 +567,7 @@
                     <a href="about.html" target="_blank"> About Us </a>
                   </li>
                   <li>
-                    <a href="portfolio.html" target="_blank"> Portfolio </a>
-                  </li>
-                  <li>
-                    <a href="privacy-policy.html" target="_blank">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="terms-condition.html" target="_blank">
-                      Terms & Condition
-                    </a>
+                    <a href="recipe.html" target="_blank"> Discover </a>
                   </li>
                 </ul>
               </div>
@@ -588,36 +579,16 @@
                   <li>
                     Phone:
                     <span>
-                      <a href="tel:+8245678924">+8245678924</a><br />
-                      <a href="tel:+8245668964">+8245668964</a>
+                      <a href="tel:+959404453209">+959404453209</a><br />
+                      <a href="tel:+959672712095">+959672712095</a>
                     </span>
                   </li>
-                  <li>
-                    Email:
-                    <span>
-                      <a
-                        href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#a7cfc2cbc8e7c6d5d5c8cbc689c4c8ca"
-                        ><span
-                          class="__cf_email__"
-                          data-cfemail="640c0108080b240516160b08054a070b09"
-                          >[email&#160;protected]</span
-                        ></a
-                      ><br />
-                      <a
-                        href="https://templates.hibootstrap.com/cdn-cgi/l/email-protection#4821262e2708293a3a272429662b2725"
-                        ><span
-                          class="__cf_email__"
-                          data-cfemail="87eee9e1e8c7e6f5f5e8ebe6a9e4e8ea"
-                          >[email&#160;protected]</span
-                        ></a
-                      >
-                    </span>
-                  </li>
+
                   <li>
                     Address:
                     <span>
-                      5ut, Stamford South,<br />
-                      New Zeland
+                      Myanmar, Bago<br />
+                      Taungoo
                     </span>
                   </li>
                 </ul>
@@ -625,17 +596,16 @@
             </div>
             <div class="col-lg-4 col-sm-6">
               <div class="footer-widget ps-5">
-                <h3>Newsletter</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor.
-                </p>
+                <h3>FeedBacks</h3>
+
                 <div class="newsletter-area">
                   <form
                     class="newsletter-form"
                     data-toggle="validator"
                     method="POST"
                   >
+                    <!-- feedback parts  -->
+
                     <input
                       type="email"
                       class="form-control"
@@ -644,9 +614,17 @@
                       required
                       autocomplete="off"
                     />
-                    <button class="subscribe-btn" type="submit">
-                      Subscribe
-                    </button>
+
+                    <div class="form-floating">
+                      <textarea
+                        class="form-control"
+                        placeholder="Leave"
+                        id="feedback"
+                        style="height: 150px"
+                      ></textarea>
+                      <label for="feedback">Feedbacks</label>
+                    </div>
+                    <button class="subscribe-btn" type="submit">Sent</button>
                     <div id="validator-newsletter" class="form-result"></div>
                   </form>
                 </div>
@@ -667,8 +645,7 @@
               <script>
                 document.write(new Date().getFullYear());
               </script>
-              Arrola. All Rights Reserved by
-              <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a>
+              Arrola. All Rights Reserved
             </p>
           </div>
         </div>
@@ -727,6 +704,8 @@
     <script src="assets/js/contact-form-script.js"></script>
 
     <script src="assets/js/custom.js"></script>
+
+    <script src="assets/js/auth/createUser.js"></script>
   </body>
 
   <!-- Mirrored from templates.hibootstrap.com/arrola/default/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Jan 2023 10:39:28 GMT -->
