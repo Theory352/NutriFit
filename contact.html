@@ -42,7 +42,7 @@
     />
     <title>NutriFit!</title>
 
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="icon" type="image/png" href="assets/images/custom/hd.jpg" />
   </head>
 
   <body>
@@ -76,9 +76,14 @@
           <div class="mobile-responsive-menu">
             <div class="logo">
               <a href="index.html">
-                <img src="assets/images/logo.png" class="logo-one" alt="Logo" />
                 <img
-                  src="assets/images/logo-white.png"
+                  src="assets/images/custom/hd.jpg"
+                  class="logo-one"
+                  style="width: 35px; height: 35px; border-radius: 50%"
+                  alt="Logo"
+                />
+                <img
+                  src="assets/images/custom/hd.jpg"
                   class="logo-two"
                   alt="Logo"
                 />
@@ -92,9 +97,14 @@
         <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
-              <img src="assets/images/logo.png" class="logo-one" alt="Logo" />
               <img
-                src="assets/images/logo-white.png"
+                src="assets/images/custom/hd.jpg"
+                class="logo-one"
+                style="width: 45px; height: 45px; border-radius: 50%"
+                alt="Logo"
+              />
+              <img
+                src="assets/images/custom/hd.jpg"
                 class="logo-two"
                 alt="Logo"
               />
@@ -361,6 +371,23 @@
                   <a href="login.html" class="default-btn two">Login</a>
                 </div>
               </div>
+               <!-- dynamic login button  -->
+               <script>
+                const loginBtn = document.querySelector(".default-btn.two");
+
+                const userInfo = localStorage.getItem("userInfo");
+
+                if (userInfo) {
+                  loginBtn.textContent = "Logout";
+                  loginBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    logout();
+                    location.reload()
+                  });
+                } else {
+                  loginBtn.textContent = "Login";
+                }
+              </script>
               <div class="mobile-nav">
                 <div class="mobile-other d-flex align-items-center">
                   <div class="optional-item">
@@ -550,7 +577,7 @@
                 <div class="footer-logo">
                   <a href="index.html">
                     <img
-                      src="assets/images/main.jpg"
+                      src="assets/images/custom/hd.jpg"
                       style="width: 13rem; height: 13rem; border-radius: 50%"
                       alt="Images"
                     />

@@ -41,7 +41,7 @@
     />
     <title>NutriFit!</title>
 
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="icon" type="image/png" href="assets/images/custom/hd.jpg" />
   </head>
   <body>
     <div class="preloader">
@@ -74,9 +74,14 @@
           <div class="mobile-responsive-menu">
             <div class="logo">
               <a href="index.html">
-                <img src="assets/images/logo.png" class="logo-one" alt="Logo" />
                 <img
-                  src="assets/images/logo-white.png"
+                  src="assets/images/custom/hd.jpg"
+                  class="logo-one"
+                  style="width: 35px; height: 35px; border-radius: 50%"
+                  alt="Logo"
+                />
+                <img
+                  src="assets/images/custom/hd.jpg"
                   class="logo-two"
                   alt="Logo"
                 />
@@ -90,9 +95,14 @@
         <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
-              <img src="assets/images/logo.png" class="logo-one" alt="Logo" />
               <img
-                src="assets/images/logo-white.png"
+                src="assets/images/custom/hd.jpg"
+                class="logo-one"
+                style="width: 45px; height: 45px; border-radius: 50%"
+                alt="Logo"
+              />
+              <img
+                src="assets/images/custom/hd.jpg"
                 class="logo-two"
                 alt="Logo"
               />
@@ -130,7 +140,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#searchmodal"
                     >
-                    <i class="fa-solid fa-user"></i>
+                      <i class="fa-solid fa-user"></i>
                     </a>
                   </div>
                 </div>
@@ -138,6 +148,23 @@
                   <a href="login.html" class="default-btn two">Login</a>
                 </div>
               </div>
+              <!-- dynamic login button  -->
+              <script>
+                const loginBtn = document.querySelector(".default-btn.two");
+
+                const userInfo = localStorage.getItem("userInfo");
+
+                if (userInfo) {
+                  loginBtn.textContent = "Logout";
+                  loginBtn.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    logout();
+                    location.reload();
+                  });
+                } else {
+                  loginBtn.textContent = "Login";
+                }
+              </script>
               <div class="mobile-nav">
                 <div class="mobile-other d-flex align-items-center">
                   <div class="optional-item">
@@ -148,7 +175,7 @@
                         data-bs-toggle="modal"
                         data-bs-target="#searchmodal"
                       >
-                      <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user"></i>
                       </a>
                     </div>
                   </div>
@@ -174,226 +201,42 @@
       </div>
     </div>
 
-    <div class="recent-recipe-area pt-100 pb-70">
-      <div class="container">
-        <div class="section-title text-center">
-          <span>Recent Recipe</span>
-          <h2>Our Latest Recipe</h2>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row pt-45 justify-content-center">
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img1.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3><a href="recipe-details.html">Tart Pecan Pie</a></h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user1.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Andres</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img2.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3><a href="recipe-details.html">Delicious Steek Tohma</a></h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user2.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Oliva</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img3.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3><a href="recipe-details.html">Spanish Dishes</a></h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user3.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Willam</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img4.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3><a href="recipe-details.html">Delicious Beef Stack</a></h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user4.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Henrry</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img5.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3><a href="recipe-details.html">Backed Egg with Simon</a></h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user5.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Emma</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6">
-            <div class="recent-recipe-item">
-              <a href="recipe-details.html">
-                <img
-                  src="assets/images/recipe-img/recipe-another-img6.jpg"
-                  alt="Images"
-                />
-              </a>
-              <div class="content">
-                <h3>
-                  <a href="recipe-details.html">Beef Spicy Tandori Masala</a>
-                </h3>
-                <div class="rating">
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                  <i class="bx bxs-star"></i>
-                </div>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore consectetur adipiscing
-                  sed.
-                </p>
-                <ul>
-                  <li>
-                    <img
-                      src="assets/images/recipe-img/recipe-user9.jpg"
-                      alt="Images"
-                    />
-                  </li>
-                  <li><a href="author.html">By Jon Ray</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div
+      class="recent-recipe-area m-2 p-3 rounded d-flex gap-2 flex-wrap align-items-center justify-content-evenly foodContainer"
+    ></div>
+    <!-- for content food  -->
+    <script>
+      const foodContainer = document.querySelector(".foodContainer");
+      fetch("https://dummyjson.com/products")
+        .then((response) => response.json())
+        .then((data) => {
+          const cardsHtml = data.products
+            ?.map((product) => {
+              return `
+          
 
-    <div class="recipe-video-area pt-100 pb-70">
+
+          <div class="card" style="width: 18rem;">
+            <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
+            <div class="card-body">
+              <h5 class="card-title">${product.title}</h5>
+              <p class="card-text">${product.category}</p>
+            </div>
+          </div>
+
+
+        `;
+            })
+            .join("");
+          foodContainer.innerHTML = cardsHtml;
+        })
+        .catch(
+          (error) => console.error("Error fetching card data:", error),
+          alert(error)
+        );
+    </script>
+
+    <!-- <div class="recipe-video-area pt-100 pb-70">
       <div class="container">
         <div class="section-title text-center">
           <span> Recipe Video</span>
@@ -588,7 +431,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <footer class="footer-area footer-area-bg">
       <div class="container">
@@ -599,7 +442,7 @@
                 <div class="footer-logo">
                   <a href="index.html">
                     <img
-                      src="assets/images/main.jpg"
+                      src="assets/images/custom/hd.jpg"
                       style="width: 13rem; height: 13rem; border-radius: 50%"
                       alt="Images"
                     />
@@ -726,113 +569,113 @@
       </div>
     </footer>
 
-     <!-- profile settings  -->
-     <div
-     class="modal fade fade-scale searchmodal"
-     id="searchmodal"
-     tabindex="-1"
-     role="dialog"
-   >
-     <div class="modal-dialog" role="document">
-       <div class="modal-content">
-         <div class="modal-header">
-           <button type="button" class="close" data-bs-dismiss="modal">
-             <i class="bx bx-x"></i>
-           </button>
-         </div>
-         <div class="modal-body">
-           <h2 class="text-primary mb-5 underline">Profile settings</h2>
-           <form class="text-primary">
-             <div class="mb-3 row">
-               <label for="staticUser" class="col-sm-2 col-form-label"
-                 >Name</label
-               >
-               <div class="col-sm-10">
-                 <input
-                   type="text"
-                   class="form-control"
-                   id="user"
-                   id="staticUser"
-                 />
-               </div>
-             </div>
-             <div class="mb-3 row">
-               <label for="staticEmail" class="col-sm-2 col-form-label"
-                 >Email</label
-               >
-               <div class="col-sm-10">
-                 <input
-                   type="text"
-                   class="form-control"
-                   id="email"
-                   id="staticEmail"
-                 />
-               </div>
-             </div>
-             <div class="mb-3 row">
-               <label for="inputPassword" class="col-sm-2 col-form-label"
-                 >Password</label
-               >
-               <div class="col-sm-10">
-                 <input
-                   id="password"
-                   type="password"
-                   class="form-control"
-                   id="inputPassword"
-                 />
-               </div>
-             </div>
-             <div class="d-flex justify-content-end gap-3">
-               <button type="submit" class="btn btn-outline-primary">
-                 Update
-               </button>
-               <button
-                 onclick="logout()"
-                 type="submit"
-                 class="btn btn-outline-primary"
-               >
-                 Logout
-               </button>
-               <button
-                 onclick="navigate()"
-                 type="button"
-                 class="btn btn-outline-primary"
-               >
-                 Create Your Own Recipe
-               </button>
-             </div>
-           </form>
-         </div>
-       </div>
-     </div>
-   </div>
+    <!-- profile settings  -->
+    <div
+      class="modal fade fade-scale searchmodal"
+      id="searchmodal"
+      tabindex="-1"
+      role="dialog"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-bs-dismiss="modal">
+              <i class="bx bx-x"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h2 class="text-primary mb-5 underline">Profile settings</h2>
+            <form class="text-primary">
+              <div class="mb-3 row">
+                <label for="staticUser" class="col-sm-2 col-form-label"
+                  >Name</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="user"
+                    id="staticUser"
+                  />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label"
+                  >Email</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="email"
+                    id="staticEmail"
+                  />
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"
+                  >Password</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    id="password"
+                    type="password"
+                    class="form-control"
+                    id="inputPassword"
+                  />
+                </div>
+              </div>
+              <div class="d-flex justify-content-end gap-3">
+                <button type="submit" class="btn btn-outline-primary">
+                  Update
+                </button>
+                <button
+                  onclick="logout()"
+                  type="submit"
+                  class="btn btn-outline-primary"
+                >
+                  Logout
+                </button>
+                <button
+                  onclick="navigate()"
+                  type="button"
+                  class="btn btn-outline-primary"
+                >
+                  Create Your Own Recipe
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
-   <!-- Customize function  -->
+    <!-- Customize function  -->
 
-   <script>
-     // <!-- Navigaet function  -->
-     const navigate = () => {
-       location.href = "recipe.html";
-     };
+    <script>
+      // <!-- Navigaet function  -->
+      const navigate = () => {
+        location.href = "recipe.html";
+      };
 
-     const user = document.getElementById("user");
-     const email = document.getElementById("email");
-     const password = document.getElementById("password");
-     // get user information
-     let existUserInfo = localStorage.getItem("userInfo");
-     let destructUsr = JSON.parse(existUserInfo);
+      const user = document.getElementById("user");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      // get user information
+      let existUserInfo = localStorage.getItem("userInfo");
+      let destructUsr = JSON.parse(existUserInfo);
 
-     if (destructUsr) {
-       user.value = destructUsr.username || "";
-       email.value = destructUsr.email || "";
-       password.value = destructUsr.password || "";
-     }
+      if (destructUsr) {
+        user.value = destructUsr.username || "";
+        email.value = destructUsr.email || "";
+        password.value = destructUsr.password || "";
+      }
 
-     // delete localStorage
-     const logout = () => {
-       localStorage.removeItem("userInfo");
-     };
-   </script>
+      // delete localStorage
+      const logout = () => {
+        localStorage.removeItem("userInfo");
+      };
+    </script>
     <script src="assets/js/jquery.min.js"></script>
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>

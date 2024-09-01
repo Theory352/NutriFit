@@ -43,7 +43,7 @@
 
     <title>NutriFit!</title>
 
-    <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+    <link rel="icon" type="image/png" href="assets/images/custom/ico.jpg" />
   </head>
 
   <body>
@@ -78,12 +78,16 @@
             <div class="logo">
               <a href="index.html">
                 <img
-                  src="assets/images/main.jpg"
+                  src="assets/images/custom/hd.jpg"
                   class="logo-one"
                   style="width: 35px; height: 35px; border-radius: 50%"
                   alt="Logo"
                 />
-                <img src="assets/images/main.jpg" class="logo-two" alt="Logo" />
+                <img
+                  src="assets/images/custom/hd.jpg"
+                  class="logo-two"
+                  alt="Logo"
+                />
               </a>
             </div>
           </div>
@@ -95,12 +99,16 @@
           <nav class="navbar navbar-expand-md navbar-light">
             <a class="navbar-brand" href="index.html">
               <img
-                src="assets/images/main.jpg"
+                src="assets/images/custom/hd.jpg"
                 class="logo-one"
                 style="width: 45px; height: 45px; border-radius: 50%"
                 alt="Logo"
               />
-              <img src="assets/images/main.jpg" class="logo-two" alt="Logo" />
+              <img
+                src="assets/images/custom/hd.jpg"
+                class="logo-two"
+                alt="Logo"
+              />
             </a>
             <div
               class="collapse navbar-collapse mean-menu"
@@ -142,6 +150,24 @@
                 <div class="optional-item">
                   <a href="login.html" class="default-btn two">Login</a>
                 </div>
+
+                <!-- dynamic login button  -->
+                <script>
+                  const loginBtn = document.querySelector(".default-btn.two");
+
+                  const userInfo = localStorage.getItem("userInfo");
+
+                  if (userInfo) {
+                    loginBtn.textContent = "Logout";
+                    loginBtn.addEventListener("click", (e) => {
+                      e.preventDefault();
+                      logout();
+                      location.reload()
+                    });
+                  } else {
+                    loginBtn.textContent = "Login";
+                  }
+                </script>
               </div>
               <div class="mobile-nav">
                 <div class="mobile-other d-flex align-items-center">
@@ -213,47 +239,13 @@
                 <span>About Us</span>
                 <h2>Weclocme to <b>NutriFit</b></h2>
                 <p>
-                  NutriFit, your trusted partner in achieving a healthier lifestyle. We are a team of nutrition experts, dietitians, and fitness enthusiasts dedicated to helping
-                  you reach your wellness goals with personalized diet plans tailored to your needs. 
+                  NutriFit, your trusted partner in achieving a healthier
+                  lifestyle. We are a team of nutrition experts, dietitians, and
+                  fitness enthusiasts dedicated to helping you reach your
+                  wellness goals with personalized diet plans tailored to your
+                  needs.
                 </p>
-                Lorem
               </div>
-              <!-- <h3>Nutrition Special Features</h3>
-              <div class="row">
-                <div class="col-lg-6 col-sm-6">
-                  <div class="about-list">
-                    <ul>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> Nutrient
-                        Requirements
-                      </li>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> Glyceraldehyde Load
-                      </li>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> Ways to Follow Diet
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                  <div class="about-list">
-                    <ul>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> Medicinal
-                        Circumstances
-                      </li>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> Glyceraldehyde Load
-                      </li>
-                      <li>
-                        <i class="bx bx-chevrons-right"></i> A Nutrition
-                        Lifestyle
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
           <div class="col-lg-6">
@@ -901,7 +893,7 @@
                 <div class="footer-logo">
                   <a href="index.html">
                     <img
-                      src="assets/images/main.jpg"
+                      src="assets/images/custom/hd.jpg"
                       style="width: 13rem; height: 13rem; border-radius: 50%"
                       alt="Images"
                     />
