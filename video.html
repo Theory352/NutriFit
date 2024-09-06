@@ -117,23 +117,6 @@
                     Home
                     <!-- <i class='bx bx-chevron-down'></i> -->
                   </a>
-                  <!-- <ul class="dropdown-menu">
-                                    <li class="nav-item">
-                                        <a href="index.html" class="nav-link active">
-                                            Home One
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-2.html" class="nav-link">
-                                            Home Two
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index-3.html" class="nav-link">
-                                            Home Three
-                                        </a>
-                                    </li>
-                                </ul> -->
                 </li>
                 <li class="nav-item">
                   <a href="about.html" class="nav-link">
@@ -247,10 +230,9 @@
             type="text"
             name="videoSearch"
             placeholder="Search Video"
-            id=""
+            id="search-input"
             class="w-100 m-1 p-2 rounded"
           />
-          <input type="submit" value="Search" class="m-1 p-2 rounded" />
         </div>
 
         <!-- section2 -->
@@ -259,22 +241,22 @@
           class="d-flex justify-content-center align-items-center rounded default-btn m-3"
           style="cursor: pointer"
         >
-          <label for="male" style="cursor: pointer">Male</label>
+          <label for="male-radio" style="cursor: pointer">Male</label>
           <input
             type="radio"
             class="m-2 p-1"
             name="gender"
-            id="male"
+            id="male-radio"
             class="rounded"
             style="cursor: pointer"
           />
 
-          <label for="female" style="cursor: pointer">Female</label>
+          <label for="female-radio" style="cursor: pointer">Female</label>
           <input
             type="radio"
             class="m-2 p-1"
             name="gender"
-            id="female"
+            id="female-radio"
             class="rounded"
             style="cursor: pointer"
           />
@@ -284,61 +266,130 @@
       <!-- content -->
 
       <main
-        class="m-2 p-3 rounded d-flex gap-2 flex-wrap align-items-center justify-content-evenly mainContain"
-      >
-        <!-- <div class="col-lg-4 col-md-6 border border-2 border-dark rounded p-1">
-          <div class="recipe-video-list">
-            <a
-              href="https://www.youtube.com/watch?v=yz0r0huhKeI"
-              class="btn-play"
-            >
-              <img
-                src="assets/images/recipe-img/recipe-side-img3.jpg"
-                alt="Images"
-              />
-            </a>
-            <div class="content">
-              <h3><a href="recipe-details.html">Egg Pouch</a></h3>
-              <ul>
-                <li><i class="bx bx-time-five"></i> 5 Minutes</li>
-                <li><i class="bx bx-check"></i> 2 Steps</li>
-              </ul>
-            </div>
-          </div>
-        </div> -->
-      </main>
+        class="m-2 p-3 rounded d-flex gap-2 flex-wrap align-items-center justify-content-evenly autocomplete-results"
+        id="mainContain"
+      ></main>
 
       <!-- main content data show from database here  -->
+
       <script>
-        const mainContain = document.querySelector(".mainContain");
+        const mainContain = document.getElementById("mainContain");
+        const autocompleteResults = document.getElementsByClassName(
+          "autocomplete-results"
+        );
 
-        fetch("https://dummyjson.com/products")
+        const apiUrl = "http://localhost:8080/movie";
+        let data = [];
+        let currentSearchTerm = ""; 
+        let currentGenderFilter = "";
+
+        // Fetch the data from the API
+        fetch(apiUrl)
           .then((response) => response.json())
-          .then((data) => {
-            const cardsHtml = data.products
-              ?.map((product) => {
-                return `
-          
-
-
-          <div class="card" style="width: 18rem;">
-            <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}">
-            <div class="card-body">
-              <h5 class="card-title">${product.title}</h5>
-              <p class="card-text">${product.category}</p>
-            </div>
-          </div>
-
-
-        `;
-              })
-              .join("");
-            mainContain.innerHTML = cardsHtml;
+          .then((dataResponse) => {
+            
+            data = dataResponse;
+            updateUI();
           })
-          .catch(
-            (error) => console.error("Error fetching card data:", error),
-            alert(error)
-          );
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+
+        // Handle search input changes
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", handleSearchTermChange);
+
+        // Handle gender radio button changes
+        const maleRadio = document.getElementById("male-radio");
+        const femaleRadio = document.getElementById("female-radio");
+        maleRadio.addEventListener("change", handleGenderChange);
+        femaleRadio.addEventListener("change", handleGenderChange);
+
+        // Function to handle search term changes
+        function handleSearchTermChange(event) {
+          currentSearchTerm = event.target.value.toLowerCase(); 
+          filterData(); 
+        }
+
+        // Function to handle gender filter changes
+        function handleGenderChange(event) {
+          currentGenderFilter = event.target.id === 'male-radio' ? 'male' : 'female';
+          filterData(); 
+        }
+
+        // Function to filter data based on both search term and gender
+        function filterData() {
+          console.log("Current Search Term:", currentSearchTerm);
+          console.log("Current Gender Filter:", currentGenderFilter);
+
+          const filteredData = data.filter((item) => {
+            const matchesSearch = item.name
+              .toLowerCase()
+              .includes(currentSearchTerm);
+            const matchesGender = currentGenderFilter
+              ? item.gender === currentGenderFilter
+              : true;
+            
+            return matchesSearch && matchesGender;
+          });
+
+          
+          updateUI(filteredData);
+          updateAutocomplete(filteredData);
+        }
+
+        // Function to update the UI with the filtered data
+        function updateUI(filteredData = data) {
+          let htmlContent = "";
+
+          if (filteredData.length === 0) {
+        htmlContent = "<p>No match found</p>";
+    } else {
+        filteredData.forEach((item) => {
+            const imageUrl = item.imageBase64 || "assets/images/custom/hd.jpg";
+
+            const cardHtml = `
+                <div style="display: flex; justify-content: center; margin: 1rem;">
+                    <div class="card"  style="width: 15rem; height: 25rem; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid #ddd; border-radius: 0.5rem; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+                        <img src="${imageUrl}" class="card-img-top" alt="${item.name}" style="width: 100%; height: 60%; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="margin: 0;">${item.name}</h5>
+                            <p class="card-text" style="margin: 0;">${item.gender}</p>
+                            <a href="${item.url}" class="btn btn-success" style="margin-top: auto;">Watch Video</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            htmlContent += cardHtml;
+        });
+    }
+
+    mainContain.innerHTML = htmlContent;
+        }
+
+        // Function to update autocomplete suggestions
+        function updateAutocomplete(filteredData) {
+          let autocompleteContent = "";
+
+          filteredData.forEach((item) => {
+            const resultHtml = `
+            <a href="#" class="list-group-item list-group-item-action" onclick="selectSuggestion('${item.name}')">
+                ${item.name}
+            </a>
+        `;
+            autocompleteContent += resultHtml;
+          });
+
+          autocompleteResults.innerHTML = autocompleteContent;
+        }
+
+        // Function to handle selecting an autocomplete suggestion
+        function selectSuggestion(name) {
+          searchInput.value = name;
+          currentSearchTerm = name.toLowerCase();
+          filterData();
+          autocompleteResults.innerHTML = ""; 
+        }
       </script>
     </div>
 

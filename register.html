@@ -34,6 +34,45 @@
     <title>NutriFit!</title>
 
     <link rel="icon" type="image/png" href="assets/images/custom/hd.jpg" />
+
+    <!-- auth  -->
+
+    <script>
+      async function registerUser(event) {
+          event.preventDefault();
+
+          // Get form values
+          const username = document.getElementById('username').value;
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
+
+          // Prepare data for POST request
+          const userData = {
+              username: username,
+              email: email,
+              password: password
+          };
+
+          try {
+              const response = await fetch('http://localhost:8080/api/auth/register', {
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(userData)
+              });
+
+              if (response.ok) {
+                  const result = await response.json();
+                  location.href ="login.html"
+              } else {
+                  console.error('Registration failed:', response.statusText);
+              }
+          } catch (error) {
+              console.error('Error:', error);
+          }
+      }
+  </script>
   </head>
   <body>
     <div class="preloader">
@@ -467,7 +506,7 @@
             <div class="user-all-form">
               <div class="contact-form">
                 <h3>Create an Account!</h3>
-                <form id="contactForm" method="post">
+                <!-- <form id="contactForm" >
                   <div class="row">
                     <div class="col-lg-12">
                       <div class="form-group">
@@ -518,7 +557,50 @@
                       </p>
                     </div>
                   </div>
-                </form>
+                </form> -->
+
+                <form id="contactForm" class="form-container" onsubmit="registerUser(event)">
+                  <div class="form-group">
+                      <input
+                          type="text"
+                          name="username"
+                          id="username"
+                          class="form-control"
+                          required
+                          placeholder="Username"
+                      />
+                  </div>
+                  <div class="form-group">
+                      <input
+                          type="email"
+                          name="email"
+                          id="email"
+                          class="form-control"
+                          required
+                          placeholder="Email"
+                      />
+                  </div>
+                  <div class="form-group">
+                      <input
+                          type="password"
+                          name="password"
+                          id="password"
+                          class="form-control"
+                          required
+                          placeholder="Password"
+                      />
+                  </div>
+                  <div class="form-group text-center">
+                      <button type="submit" id="register" class="default-btn" >
+                          Register Now
+                      </button>
+                  </div>
+                  <div class="text-center">
+                      <p class="account-desc">
+                          Already have an account? <a href="login.html">Log In</a>
+                      </p>
+                  </div>
+              </form>
               </div>
             </div>
           </div>
@@ -715,7 +797,7 @@
 
     <script src="assets/js/custom.js"></script>
 
-    <script src="assets/js/auth/createUser.js"></script>
+    <!-- <script src="assets/js/auth/createUser.js"></script> -->
   </body>
 
   <!-- Mirrored from templates.hibootstrap.com/arrola/default/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 04 Jan 2023 10:39:28 GMT -->

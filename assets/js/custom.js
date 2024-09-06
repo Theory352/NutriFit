@@ -288,12 +288,12 @@ function toggleTheme() {
     setTheme("theme-dark");
   }
 }
-(function () {
-  if (localStorage.getItem("arrola_theme") === "theme-dark") {
-    setTheme("theme-dark");
-    document.getElementById("slider").checked = false;
-  } else {
-    setTheme("theme-light");
-    document.getElementById("slider").checked = true;
-  }
-})();
+// (function () {
+//   if (localStorage.getItem("arrola_theme") === "theme-dark") {
+//     setTheme("theme-dark");
+//     document.getElementById("slider").checked = false;
+//   } else {
+//     setTheme("theme-light");
+//     document.getElementById("slider").checked = true;
+//   }
+// })();
