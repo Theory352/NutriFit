@@ -95,6 +95,26 @@
       });
   });
 </script>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+  }
+  .calculator-container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+  }
+  label {
+    margin-right: 10px;
+  }
+  .result-card {
+    display: none;
+  }
+</style>
   </head>
   <body>
     <div class="preloader">
@@ -297,7 +317,85 @@
                 const description =
                   product.description.substring(0, 50) + "...";
                 return `
-          
+            <!-- BMI and Daily Calorie Needs Section (FPS) -->
+    <div class="container calculator-container">
+      <div class="row">
+        <!-- Left Side: Form -->
+        <div class="col-md-6">
+          <h1 class="mb-5">BMI and Daily Calorie Needs (FPS System)</h1>
+          <form id="bmi-calculator">
+            <div class="mb-3">
+              <label for="weight">Weight (lbs):</label>
+              <input
+                type="number"
+                id="weight"
+                class="form-control"
+                
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="height">Height (inches):</label>
+              <input
+                type="number"
+                id="height"
+                class="form-control"
+                
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="age">Age:</label>
+              <input
+                type="number"
+                id="age"
+                class="form-control"
+               
+                required
+              />
+            </div>
+
+            <div class="mb-3">
+              <label for="gender">Gender:</label><br />
+              <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+                required
+              />
+              <label for="male">Male</label>
+              <input type="radio" id="female" name="gender" value="female" />
+              <label for="female">Female</label>
+            </div>
+
+            <div class="mb-3">
+              <label for="goal">Goal:</label><br />
+              <input type="radio" id="lose" name="goal" value="lose" required />
+              <label for="lose">Lose Weight</label>
+              <input type="radio" id="gain" name="goal" value="gain" />
+              <label for="gain">Gain Weight</label>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="calculate()">
+              Calculate
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Side: Results Card -->
+        <div class="col-md-6">
+          <div id="results" class="card result-card">
+            <div class="card-body">
+              <h5 class="card-title">Results</h5>
+              <div id="results-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
               <div class="col-md-2 " style="width: 15rem; height: 25rem; display: flex; flex-direction: column; justify-content: space-between;border-radius: 0.5rem; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
                 <div class="recent-recipe-item"style="display: flex; flex-direction: column; height: 100%;">
@@ -658,12 +756,75 @@
       </div>
     </div>
 
+
+     <!-- Custom BMI Calculation Script (FPS System) -->
+     <script>
+      function calculate() {
+        const weight = parseFloat(document.getElementById("weight").value); // in pounds
+        const height = parseFloat(document.getElementById("height").value); // in inches
+        const age = parseInt(document.getElementById("age").value);
+        const gender = document.querySelector(
+          'input[name="gender"]:checked'
+        ).value;
+        const goal = document.querySelector('input[name="goal"]:checked').value;
+
+        // Validate inputs
+        if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+          alert("Please provide valid inputs.");
+          return;
+        }
+
+        // BMI Calculation (FPS system: pounds and inches)
+        const bmi = ((703 * weight) / (height * height)).toFixed(2);
+
+        // BMR Calculation (Mifflin-St Jeor Equation) with weight in lbs and height in inches
+        let bmr;
+        if (gender === "male") {
+          bmr = 66 + 6.23 * weight + 12.7 * height - 6.8 * age;
+        } else {
+          bmr = 655 + 4.35 * weight + 4.7 * height - 4.7 * age;
+        }
+
+        // Adjust BMR based on goal
+        let calorieIntake;
+        if (goal === "lose") {
+          calorieIntake = bmr - 500;
+        } else if (goal === "gain") {
+          calorieIntake = bmr + 500;
+        } else {
+          calorieIntake = bmr; // Maintain weight
+        }
+
+        // Display Results
+        const results = `
+          <p><strong>BMI:</strong> ${bmi} (${getBMICategory(bmi)})</p>
+          <p><strong>Daily Calorie Needs:</strong> ${calorieIntake.toFixed(
+            0
+          )} kcal/day</p>`;
+
+        document.getElementById("results-content").innerHTML = results;
+        document.getElementById("results").style.display = "block";
+      }
+
+      function getBMICategory(bmi) {
+        if (bmi < 18.5) {
+          return "Underweight";
+        } else if (bmi >= 18.5 && bmi < 24.9) {
+          return "Normal weight";
+        } else if (bmi >= 25 && bmi < 29.9) {
+          return "Overweight";
+        } else {
+          return "Obesity";
+        }
+      }
+    </script>
+
     <!-- Customize function  -->
 
     <script>
       // <!-- Navigaet function  -->
       const navigate = () => {
-        location.href = "recipe.html";
+        location.href = "createRecipe.html";
       };
 
       const user = document.getElementById("user");

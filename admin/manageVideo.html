@@ -26,72 +26,72 @@
 
     <!-- Custom CSS for Background Animation -->
     <style>
-        /* Animation for the background */
-        @keyframes gradientBG {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+      /* Animation for the background */
+      @keyframes gradientBG {
+        0% {
+          background-position: 0% 50%;
         }
-        /* f4f7ea header bg  white*/
-        /* 72ae44 bg-color  */
-  
-        /* universal state  */
-  
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
+        50% {
+          background-position: 100% 50%;
         }
-        /* Main body style */
-        body {
-          font-family: "Arial", sans-serif;
-          height: 100vh;
-          background: #b0b1af;
-          background-size: 400% 400%;
-          animation: gradientBG 15s ease infinite;
-          color: white;
+        100% {
+          background-position: 0% 50%;
         }
-        
-        /* Dropdown submenu styling */
-        .dropdown-menu {
-          background-color: rgba(0, 0, 0, 0.8);
-        }
-  
-        .dropdown-item {
-          color: white;
-        }
-        .dropdown-item:hover {
-          background-color: #3a466b;
-        }
-  
-        /* Dashboard styling */
-        .card {
-          margin-bottom: 20px;
-          border: none;
-          border-radius: 15px;
-          box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-          transition: transform 0.3s ease;
-        }
-        .card:hover {
-          transform: translateY(-10px);
-          cursor: pointer;
-        }
-  
-        /* Header */
-        .page-header {
-          background-color: #72ae44;
-          padding: 20px;
-          border-radius: 10px;
-          text-align: center;
-          margin-bottom: 20px;
-        }
-      </style>
+      }
+      /* f4f7ea header bg  white*/
+      /* 72ae44 bg-color  */
+
+      /* universal state  */
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      /* Main body style */
+      body {
+        font-family: "Arial", sans-serif;
+        height: 100vh;
+        background: #b0b1af;
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        color: white;
+      }
+
+      /* Dropdown submenu styling */
+      .dropdown-menu {
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+
+      .dropdown-item {
+        color: white;
+      }
+      .dropdown-item:hover {
+        background-color: #3a466b;
+      }
+
+      /* Dashboard styling */
+      .card {
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-10px);
+        cursor: pointer;
+      }
+
+      /* Header */
+      .page-header {
+        background-color: #72ae44;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+    </style>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
@@ -111,25 +111,182 @@
 
         <!-- Main Content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-          <div class="fade-in ">
+          <div class="fade-in">
             <!-- Page Header -->
             <div class="page-header">
               <h1>Admin Dashboard</h1>
               <p>Manage Videos Panel</p>
-              <button class="btn btn-outline-primary">   <i class="fas fa-plus-circle"></i>  Add New Video</button>
-                
+              <button
+                type="button"
+                class="btn btn-outline-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#addNewModal"
+              >
+                <i class="fas fa-plus-circle"></i> Add New Video
+              </button>
             </div>
 
             <!-- Dashboard Stats -->
-            <div class="row g-4 ">
-              
-            </div>
+            <div class="row g-4"></div>
           </div>
         </main>
       </div>
     </div>
 
+    <!-- Modal Structure -->
+    <div
+      class="modal fade"
+      id="addNewModal"
+      tabindex="-1"
+      aria-labelledby="addNewModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="addNewModalLabel">Add New Video</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <!-- Modal Body -->
+          <div class="modal-body">
+            <!-- Form Inside the Modal -->
+            <form id="addNewForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Description</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="text" class="form-control" id="image" required />
+              </div>
+            </form>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              onclick="submitForm()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // get url
+
+      // document.addEventListener("DOMContentLoaded", function () {
+      //   // Get the current path by extracting the last part of the URL
+      //   const fullURL = window.location.pathname.split('/').pop();
+
+      //   // Log the full URL
+      //   console.log("Full URL:", fullURL);
+
+      //   // Check which page is active and apply the 'active' class to the correct nav link
+      //   if (fullURL === "manageUser.html") {
+      //     document.getElementById("manageUser").classList.add("active");
+      //   } else if (fullURL === "index.html") {
+      //     document.getElementById("dashboard").classList.add("active");
+      //   } else if (fullURL === "managerecipe.html") {
+      //     document.getElementById("manageRecipe").classList.add("active");
+      //   } else if (fullURL === "managefeedback.html") {
+      //     document.getElementById("feedback").classList.add("active");
+      //   } else if (fullURL === "managevideo.html") {
+      //     document.getElementById("workout").classList.add("active");
+      //   }
+      // });
+
+      // model toggle
+
+      function submitForm() {
+        // Get form data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const role = document.getElementById("role").value;
+
+        // Perform any form validation
+        console.log("Form submitted with:", { name, email, password, role });
+
+        // Close the modal after submission
+        const modalElement = document.getElementById("addNewModal");
+        const modal = bootstrap.Modal.getInstance(modalElement);
+        modal.hide();
+
+        // Clear form after submission
+        document.getElementById("addNewForm").reset();
+      }
+
+      // updatePromotion
+      function updatePromotion(text, buttonId) {
+        let button = document.getElementById(buttonId);
+        button.textContent = text;
+      }
+
+      // edit
+      function toggleEdit(id) {
+        const editBtn = document.getElementById(`edit-btn-${id}`);
+        const firstNameCell = document.getElementById(`first-name-${id}`);
+        const lastNameCell = document.getElementById(`last-name-${id}`);
+        const handleCell = document.getElementById(`handle-${id}`);
+
+        if (editBtn.textContent === "Edit") {
+          // Enter edit mode
+          firstNameCell.innerHTML = `<input type="text" value="${firstNameCell.textContent}">`;
+          lastNameCell.innerHTML = `<input type="text" value="${lastNameCell.textContent}">`;
+          handleCell.innerHTML = `<input type="text" value="${handleCell.textContent}">`;
+
+          editBtn.textContent = "Update";
+        } else {
+          // Save changes
+          const newFirstName = firstNameCell.querySelector("input").value;
+          const newLastName = lastNameCell.querySelector("input").value;
+          const newHandle = handleCell.querySelector("input").value;
+
+          firstNameCell.textContent = newFirstName;
+          lastNameCell.textContent = newLastName;
+          handleCell.textContent = newHandle;
+
+          editBtn.textContent = "Edit";
+
+          console.log("Updated:", { newFirstName, newLastName, newHandle });
+        }
+      }
+
+      function updatePromotion(role, buttonId) {
+        const button = document.getElementById(buttonId);
+        button.textContent = `Promote to ${role}`;
+        console.log(`Promote to ${role}`);
+      }
+
+      // add new user
+
+      //   delete
+    </script>
   </body>
 </html>

@@ -367,8 +367,8 @@
                   <a href="login.html" class="default-btn two">Login</a>
                 </div>
               </div>
-               <!-- dynamic login button  -->
-               <script>
+              <!-- dynamic login button  -->
+              <script>
                 const loginBtn = document.querySelector(".default-btn.two");
 
                 const userInfo = localStorage.getItem("userInfo");
@@ -378,7 +378,7 @@
                   loginBtn.addEventListener("click", (e) => {
                     e.preventDefault();
                     logout();
-                    location.reload()
+                    location.reload();
                   });
                 } else {
                   loginBtn.textContent = "Login";
@@ -1391,7 +1391,7 @@
     <script>
       // <!-- Navigaet function  -->
       const navigate = () => {
-        location.href = "recipe.html";
+        location.href = "createRecipe.html";
       };
 
       const user = document.getElementById("user");
